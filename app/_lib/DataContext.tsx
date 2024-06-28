@@ -1,50 +1,34 @@
 'use client';
 
 import { Dispatch, ReactNode, SetStateAction, createContext, useState } from 'react';
-import { Selection } from '@/app/_lib/interfaces';
 
-export const bgColors = {
-  HTML: 'bg-[#FFF1E9]',
-  CSS: 'bg-[#E0FDEF]',
-  JavaScript: 'bg-[#EBF0FF]',
-  Accessibility: 'bg-[#F6E7FF]',
+export enum FontFamily {
+  sans_serif = 'sans_serif',
+  serif = 'serif',
+  monospace = 'monospace',
+}
+
+export const fontFamilies = {
+  sans_serif: 'font-inter',
+  serif: 'font-lora',
+  monospace: 'font-inconsolata',
 };
 
 export const DataContext = createContext(
   {} as {
-    selectionQuiz: Selection | null;
-    setSelectionQuiz: Dispatch<SetStateAction<Selection | null>>;
-    progress: number;
-    setProgress: Dispatch<SetStateAction<number>>;
-    selectionOption: number | null;
-    setSelectionOption: Dispatch<SetStateAction<number | null>>;
-    showCorrect: boolean;
-    setShowCorrect: Dispatch<SetStateAction<boolean>>;
-    score: number;
-    setScore: Dispatch<SetStateAction<number>>;
+    fontFamily: FontFamily | null;
+    setFontFamily: Dispatch<SetStateAction<FontFamily | null>>;
   },
 );
 
 export default function DataProvider({ children }: { children: ReactNode }) {
-  const [selectionQuiz, setSelectionQuiz] = useState<Selection | null>(null);
-  const [selectionOption, setSelectionOption] = useState<number | null>(null);
-  const [progress, setProgress] = useState<number>(0);
-  const [showCorrect, setShowCorrect] = useState<boolean>(false);
-  const [score, setScore] = useState<number>(0);
+  const [fontFamily, setFontFamily] = useState<FontFamily | null>(null);
 
   return (
     <DataContext.Provider
       value={{
-        selectionQuiz,
-        setSelectionQuiz,
-        progress,
-        setProgress,
-        selectionOption,
-        setSelectionOption,
-        showCorrect,
-        setShowCorrect,
-        score,
-        setScore,
+        fontFamily,
+        setFontFamily,
       }}
     >
       {children}

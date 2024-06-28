@@ -26,21 +26,23 @@ const inconsolata = Inconsolata({
 });
 
 export const metadata: Metadata = {
-  title: 'Frontend Quiz app',
-  description: 'Frontend Quiz app',
-  applicationName: 'Frontend Quiz app',
+  title: 'Dictionary web app',
+  description: 'Dictionary web app',
+  applicationName: 'Dictionary web app',
 } as const;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html className="hidden" lang="en">
       <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"></link>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"></link>
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"></link>
         <meta property="og:image" content={undefined} />
       </head>
-      <body className={`${inter.variable} ${lora.variable} ${inconsolata.variable} mx-auto w-full overflow-x-clip`}>
+      <body
+        className={`${inter.variable} ${lora.variable} ${inconsolata.variable} mx-auto w-full overflow-x-clip bg-white transition dark:bg-[#050505]`}
+      >
         <DataContext>{children}</DataContext>
       </body>
     </html>
