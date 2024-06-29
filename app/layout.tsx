@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Lora, Inconsolata } from 'next/font/google';
+import { Inter, Lora, Inconsolata, Roboto } from 'next/font/google';
 import { ReactNode } from 'react';
 import DataContext from '@/app/_lib/DataContext';
 
@@ -25,6 +25,13 @@ const inconsolata = Inconsolata({
   subsets: ['latin'],
 });
 
+const roboto = Roboto({
+  display: 'swap',
+  weight: ['100', '300', '400', '500', '700', '900'],
+  variable: '--font-roboto',
+  subsets: ['latin'],
+});
+
 export const metadata: Metadata = {
   title: 'Dictionary web app',
   description: 'Dictionary web app',
@@ -41,7 +48,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta property="og:image" content={undefined} />
       </head>
       <body
-        className={`${inter.variable} ${lora.variable} ${inconsolata.variable} mx-auto w-full overflow-x-clip bg-white transition dark:bg-[#050505]`}
+        className={`${inter.variable} ${lora.variable} ${inconsolata.variable} ${roboto.variable} mx-auto w-full overflow-x-clip bg-white transition dark:bg-[#050505]`}
       >
         <DataContext>{children}</DataContext>
       </body>

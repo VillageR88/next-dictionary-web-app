@@ -69,7 +69,7 @@ export default function ButtonTheme() {
         viewBox="0 0 22 22"
       >
         <path
-          className="transition"
+          className=""
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"

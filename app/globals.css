@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  @apply shadow-[0_0_0_60px_#F4F4F4_inset] transition dark:shadow-[0_0_0_60px_#1F1F1F_inset];
+  -webkit-text-fill-color: #2D2D2D;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+  -webkit-text-size-adjust: none;
+}
+:is(.dark) input:-webkit-autofill {
+  -webkit-text-fill-color: white;
+}
+
+h1 {
+  @apply text-[64px] font-bold text-[#2D2D2D] transition dark:text-white;
+}
+
+h2 {
+  @apply text-[24px] font-bold italic text-[#2D2D2D] transition dark:text-white;
+}
+
+h3 {
+  @apply text-[20px] text-[#757575];
+}
+h4 {
+  @apply text-[14px] text-[#757575];
+}
+
+li.dotted::marker {
+  @apply absolute text-[#8F19E8] content-['•'];
+}
+
+li.dotted {
+  @apply ml-7;
+}
+
+li.dotted p {
+  @apply ml-5;
+}
+p {
+  @apply text-[18px] leading-[24px] text-[#2D2D2D] transition dark:text-white;
+}
+
+p.synonym {
+  @apply text-[20px] font-bold text-[#A445ED] underline-offset-4 hover:cursor-pointer hover:underline;
+}

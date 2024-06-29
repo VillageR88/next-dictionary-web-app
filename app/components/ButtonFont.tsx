@@ -1,8 +1,6 @@
 'use client';
 import { DataContext, fontFamilies, FontFamily } from '../_lib/DataContext';
-import { useContext, useState, useEffect } from 'react';
-import Image from 'next/image';
-import imageArrow from '@/public/assets/images/icon-arrow-down.svg';
+import { useContext, useEffect, useState } from 'react';
 
 const fontNames = {
   sans_serif: 'Sans Serif',
@@ -11,8 +9,8 @@ const fontNames = {
 };
 
 export default function ButtonFont() {
-  const { setFontFamily, fontFamily } = useContext(DataContext);
-  const [showFonts, setShowFonts] = useState<boolean>(false);
+  const { setFontFamily, fontFamily, showFonts, setShowFonts } = useContext(DataContext);
+  const [temporalPincerFont, setTemporalPincerFont] = useState<FontFamily | null>(fontFamily);
 
   useEffect(() => {
     if (fontFamily === null) {
@@ -37,33 +35,48 @@ export default function ButtonFont() {
         type="button"
       >
         <span>{fontNames[fontFamily]}</span>
-        <Image width={14} height={8} className="size-fit" src={imageArrow as string} alt="arrow" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8">
+          <path fill="none" stroke="#A445ED" strokeWidth="1.5" d="m1 1 6 6 6-6" />
+        </svg>
       </button>
 
       <div
         onMouseLeave={() => {
           setShowFonts(false);
         }}
-        className={`absolute ${showFonts ? 'opacity-100' : 'pointer-events-none opacity-0'} right-8 pt-12 transition`}
+        className={`absolute ${showFonts ? 'opacity-100' : 'pointer-events-none opacity-0 duration-0'} right-8 pt-12 transition`}
       >
-        <div className="flex h-[152px] w-[183px] flex-col gap-[16px] rounded-[16px] p-[24px] text-[18px] font-bold leading-[24px] shadow-[0_8px_35px_-0px_rgba(0,0,0,0.11)] transition dark:bg-[#1F1F1F]">
+        <ul
+          onMouseLeave={() => {
+            setShowFonts(false);
+          }}
+          className="relative z-10 flex h-[152px] w-[183px] flex-col gap-[16px] rounded-[16px] bg-white p-[24px] text-[18px] font-bold leading-[24px] shadow-[0_8px_35px_-0px_rgba(0,0,0,0.11)] transition dark:bg-[#1F1F1F] dark:shadow-[0_8px_25px_-0px_rgba(164,69,237,1)]"
+        >
           {Object.entries(fontNames).map(([key, value]) => (
-            <button
-              onClick={() => {
-                setFontFamily(key as FontFamily);
-                setShowFonts(false);
-                localStorage.setItem('fontFamily', key);
-              }}
-              type="button"
-              className={`${fontFamilies[key as keyof typeof FontFamily]} text-left text-[#2D2D2D] transition hover:text-[#A445ED] dark:text-white dark:hover:text-[#A445ED]`}
-              id={key}
-              key={key}
-              value={key}
-            >
-              {value}
-            </button>
+            <li key={key}>
+              <button
+                onMouseEnter={() => {
+                  setFontFamily(key as FontFamily);
+                }}
+                onMouseLeave={() => {
+                  setFontFamily(temporalPincerFont);
+                }}
+                onClick={() => {
+                  setFontFamily(key as FontFamily);
+                  setTemporalPincerFont(key as FontFamily);
+                  setShowFonts(false);
+                  localStorage.setItem('fontFamily', key);
+                }}
+                type="button"
+                className={`${fontFamilies[key as keyof typeof FontFamily]} text-left text-[#2D2D2D] transition hover:text-[#A445ED] dark:text-white dark:hover:text-[#A445ED]`}
+                id={key}
+                value={key}
+              >
+                {value}
+              </button>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );
