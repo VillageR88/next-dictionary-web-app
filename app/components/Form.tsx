@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Loader from './Loader';
 import imageSearch from '@/public/assets/images/icon-search.svg';
+import ButtonPlay from './ButtonPlay';
 import { useFormState } from 'react-dom';
 import { CreateInvoice } from '../_lib/functionsServer';
 import { Word, ErrorWord } from '../_lib/interfaces';
@@ -14,6 +15,9 @@ const errorLine1 = 'No Definitions Found';
 const errorLine2 =
   "Sorry pal, we couldn't find definitions for the word you were looking for. You can try the search again at later time or head to the web instead.";
 const placeholder = 'Search for any word…';
+
+const LineBreak = () => <div className="w-full border-t border-[#dbdada] transition dark:border-[#3A3A3A]"></div>;
+
 export default function Form() {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -26,6 +30,7 @@ export default function Form() {
   const [error, setError] = useState<boolean>(false);
   const [errorEffects, setErrorEffects] = useState<boolean>(false);
   const [pending, setPending] = useState<boolean>(false);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [state, action] = useFormState<
     {
       number: number;
@@ -44,6 +49,22 @@ export default function Form() {
   } else {
     data = state.jsonData[0 as keyof typeof state.jsonData] as Word;
   }
+
+  useEffect(() => {
+    if ('phonetics' in data && data.phonetics) {
+      let audioSource;
+      for (const phonetic of data.phonetics) {
+        if (phonetic.audio) {
+          audioSource = new Audio(phonetic.audio);
+        }
+      }
+      if (!audioSource) {
+        setAudio(null);
+        return;
+      }
+      setAudio(audioSource);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (trackedNumber !== state.number) {
@@ -93,20 +114,32 @@ export default function Form() {
             <Loader />
           </div>
         ) : (
-          <Image alt="" className="absolute right-[24px] size-fit" src={imageSearch as string} />
+          <Image alt="" className="pointer-events-none absolute right-[24px] size-fit" src={imageSearch as string} />
         )}
       </label>
 
       {'word' in data && !error ? (
         <div ref={bottomDivRef} className="flex flex-col gap-[40px]">
-          <div className="mt-[45px] flex size-full flex-col">
-            <h1>{data.word}</h1>
-            <p className="text-[24px] text-[#A445ED] dark:text-[#A445ED]">{data.phonetic}</p>
+          <div className="mt-[45px] flex h-fit w-full items-center justify-between">
+            <div className="flex size-fit flex-col justify-center">
+              <h1>{data.word}</h1>
+              <p className="text-[24px] text-[#A445ED] dark:text-[#A445ED]">{data.phonetic}</p>
+            </div>
+            {audio && (
+              <ButtonPlay
+                play={() => {
+                  void audio.play();
+                }}
+              />
+            )}
           </div>
           <ul className="flex flex-col gap-[40px]">
             {data.meanings?.map((meaning, index) => (
               <li key={index} className="flex flex-col gap-[40px]">
-                <h2>{meaning.partOfSpeech}</h2>
+                <div className="flex items-center gap-[32px]">
+                  <h2>{meaning.partOfSpeech}</h2>
+                  <LineBreak />
+                </div>
                 <div className="flex flex-col gap-[25px]">
                   <h3>{titleMeaning}</h3>
                   <ul className="flex flex-col gap-[13px]">
@@ -147,18 +180,28 @@ export default function Form() {
             ))}
           </ul>
           <div className="flex flex-col gap-[19px]">
-            <div className="w-full border-t border-[#dbdada] transition dark:border-[#3A3A3A]"></div>
+            <LineBreak />
             <div className="flex items-baseline gap-[20px]">
               <h4>Source</h4>
-              <ul>
+              <ul className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
                 {data.sourceUrls?.map((link) => (
                   <li key={link}>
                     <Link
-                      className="text-[14px] text-[#2D2D2D] underline transition dark:text-white"
+                      className="flex items-center gap-[9px] text-[14px] text-[#2D2D2D] underline transition dark:text-white"
                       prefetch
                       href={link}
                     >
-                      {link}
+                      <span>{link}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                        <path
+                          fill="none"
+                          stroke="#838383"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
+                        />
+                      </svg>
                     </Link>
                   </li>
                 ))}

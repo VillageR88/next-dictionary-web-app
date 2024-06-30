@@ -7,7 +7,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   @apply shadow-[0_0_0_60px_#F4F4F4_inset] transition dark:shadow-[0_0_0_60px_#1F1F1F_inset];
-  -webkit-text-fill-color: #2D2D2D;
+  -webkit-text-fill-color: #2d2d2d;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-border-radius: 16px;
@@ -34,7 +34,7 @@ h4 {
 }
 
 li.dotted::marker {
-  @apply absolute text-[#8F19E8] content-['•'];
+  @apply absolute font-sans text-[#8F19E8] content-['•'];
 }
 
 li.dotted {

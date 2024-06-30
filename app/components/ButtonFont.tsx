@@ -50,7 +50,7 @@ export default function ButtonFont() {
           onMouseLeave={() => {
             setShowFonts(false);
           }}
-          className="relative z-10 flex h-[152px] w-[183px] flex-col gap-[16px] rounded-[16px] bg-white p-[24px] text-[18px] font-bold leading-[24px] shadow-[0_8px_35px_-0px_rgba(0,0,0,0.11)] transition dark:bg-[#1F1F1F] dark:shadow-[0_8px_25px_-0px_rgba(164,69,237,1)]"
+          className="relative z-10 flex h-[152px] w-[183px] flex-col gap-[16px] rounded-[16px] bg-white p-[24px] text-[18px] font-bold leading-[24px] shadow-[0_4px_35px_2px_rgba(0,0,0,0.16)] transition dark:bg-[#1F1F1F] dark:shadow-[0_4px_30px_0px_rgba(164,69,237,1)]"
         >
           {Object.entries(fontNames).map(([key, value]) => (
             <li key={key}>

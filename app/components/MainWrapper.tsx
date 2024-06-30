@@ -4,8 +4,11 @@ import { ReactNode, useContext } from 'react';
 
 export default function MainWrapper({ children }: { children: ReactNode }) {
   const { fontFamily } = useContext(DataContext);
+
   return (
-    <div className={`mx-auto flex min-h-screen w-full max-w-[737px] flex-col ${fontFamilies[fontFamily]}`}>
+    <div
+      className={`mx-auto flex min-h-screen w-full max-w-[737px] flex-col py-[58px] ${fontFamily ? fontFamilies[fontFamily] : ''}`}
+    >
       {children}
     </div>
   );
