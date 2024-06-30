@@ -22,6 +22,7 @@ const config: Config = {
         inter: ['var(--font-inter)'],
         lora: ['var(--font-lora)'],
         inconsolata: ['var(--font-inconsolata)'],
+        roboto: ['var(--font-roboto)'],
       },
       colors: {
         gray1: '#121212',

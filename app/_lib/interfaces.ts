@@ -1,22 +1,42 @@
-export interface QuizData {
-  quizzes: Quiz[];
+interface Phonetic {
+  text?: string;
+  audio?: string;
+  sourceUrl?: string;
+  license?: {
+    name?: string;
+    url?: string;
+  };
 }
 
-export interface Quiz {
-  title: string;
-  icon: string;
-  questions: Question[];
+interface Definition {
+  definition?: string;
+  example?: string;
+  synonyms?: string[];
+  antonyms?: string[];
 }
 
-export interface Question {
-  question: string;
-  options: string[];
-  answer: string;
+interface Meaning {
+  partOfSpeech?: string;
+  definitions?: Definition[];
+  synonyms?: string[];
+  antonyms?: string[];
 }
 
-export enum Selection {
-  HTML = 'HTML',
-  CSS = 'CSS',
-  JavaScript = 'JavaScript',
-  Accessibility = 'Accessibility',
+export interface Word {
+  word?: string;
+  phonetic?: string;
+  phonetics?: Phonetic[];
+  meanings?: Meaning[];
+  license?: {
+    name?: string;
+    url?: string;
+  };
+  sourceUrls?: string[];
+  origin?: string;
+}
+
+export interface ErrorWord {
+  title?: string;
+  message?: string;
+  resolution?: string;
 }
