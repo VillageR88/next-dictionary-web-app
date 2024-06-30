@@ -19,15 +19,15 @@ input:-webkit-autofill:active {
 }
 
 h1 {
-  @apply text-[64px] font-bold text-[#2D2D2D] transition dark:text-white;
+  @apply text-[32px] font-bold text-[#2D2D2D] transition dark:text-white md:text-[64px];
 }
 
 h2 {
-  @apply text-[24px] font-bold italic text-[#2D2D2D] transition dark:text-white;
+  @apply text-[18px] font-bold italic text-[#2D2D2D] transition dark:text-white md:text-[24px];
 }
 
 h3 {
-  @apply text-[20px] text-[#757575];
+  @apply text-[16px] md:text-[20px] text-[#757575];
 }
 h4 {
   @apply text-[14px] text-[#757575];
@@ -38,16 +38,16 @@ li.dotted::marker {
 }
 
 li.dotted {
-  @apply ml-7;
+  @apply md:ml-7 ml-2.5;
 }
 
 li.dotted p {
-  @apply ml-5;
+  @apply md:ml-5 ml-3;
 }
 p {
-  @apply text-[18px] leading-[24px] text-[#2D2D2D] transition dark:text-white;
+  @apply text-[15px] md:text-[18px] leading-[24px] text-[#2D2D2D] transition dark:text-white;
 }
 
 p.synonym {
-  @apply text-[20px] font-bold text-[#A445ED] underline-offset-4 hover:cursor-pointer hover:underline;
+  @apply text-[16px] md:text-[20px] font-bold text-[#A445ED] underline-offset-4 hover:cursor-pointer hover:underline;
 }

@@ -31,7 +31,7 @@ export default function ButtonFont() {
         onClick={() => {
           setShowFonts(!showFonts);
         }}
-        className="flex items-center gap-[14px] text-[18px] font-bold leading-[24px] text-[#2D2D2D] transition dark:text-white"
+        className="flex items-center gap-[14px] text-[14px] font-bold leading-[24px] text-[#2D2D2D] transition dark:text-white md:text-[18px]"
         type="button"
       >
         <span>{fontNames[fontFamily]}</span>
@@ -44,13 +44,13 @@ export default function ButtonFont() {
         onMouseLeave={() => {
           setShowFonts(false);
         }}
-        className={`absolute ${showFonts ? 'opacity-100' : 'pointer-events-none opacity-0 duration-0'} right-8 pt-12 transition`}
+        className={`absolute ${showFonts ? 'opacity-100' : 'pointer-events-none opacity-0 duration-0'} right-2 pt-12 transition md:right-8`}
       >
         <ul
           onMouseLeave={() => {
             setShowFonts(false);
           }}
-          className="relative z-10 flex h-[152px] w-[183px] flex-col gap-[16px] rounded-[16px] bg-white p-[24px] text-[18px] font-bold leading-[24px] shadow-[0_4px_35px_2px_rgba(0,0,0,0.16)] transition dark:bg-[#1F1F1F] dark:shadow-[0_4px_30px_0px_rgba(164,69,237,1)]"
+          className="relative z-10 flex h-[152px] w-[183px] flex-col gap-[16px] rounded-[16px] bg-white p-[24px] text-[14px] font-bold leading-[24px] shadow-[0_4px_35px_2px_rgba(0,0,0,0.16)] transition dark:bg-[#1F1F1F] dark:shadow-[0_4px_30px_0px_rgba(164,69,237,1)] md:text-[18px]"
         >
           {Object.entries(fontNames).map(([key, value]) => (
             <li key={key}>

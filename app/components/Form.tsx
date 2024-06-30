@@ -96,7 +96,7 @@ export default function Form() {
         action(new FormData(formRef.current));
       }}
     >
-      <label className="relative mt-[51.5px] flex h-fit w-full items-center">
+      <label className="relative mt-[24px] flex h-fit w-full items-center md:mt-[51.5px]">
         <input
           onChange={() => {
             setErrorEffects(false);
@@ -106,7 +106,8 @@ export default function Form() {
           name="search"
           defaultValue={'keyboard'}
           aria-label="search"
-          className={`${showFonts ? '-z-10' : ''} ${errorEffects ? 'outline outline-2 outline-[#FF5252]' : 'outline-none focus:outline-[#A445ED]'} relative h-[64px] w-full rounded-[16px] bg-[#F4F4F4] py-[24px] pl-[24px] pr-[58px] text-[20px] font-bold text-[#2D2D2D] caret-[#A445ED] transition dark:bg-[#1F1F1F] dark:text-white`}
+          // eslint-disable-next-line tailwindcss/migration-from-tailwind-2
+          className={`${showFonts ? '-z-10' : ''} ${errorEffects ? 'outline outline-2 outline-[#FF5252]' : 'outline-none focus:outline-[#A445ED]'} relative h-[48px] w-full rounded-[16px] bg-[#F4F4F4] py-[24px] pl-[24px] pr-[58px] text-[16px] font-bold text-[#2D2D2D] placeholder-[#2D2D2D]/25 caret-[#A445ED] transition dark:bg-[#1F1F1F] dark:text-white dark:placeholder:text-white/25 md:h-[64px] md:text-[20px]`}
           type="text"
         />
         {pending ? (
@@ -119,11 +120,11 @@ export default function Form() {
       </label>
 
       {'word' in data && !error ? (
-        <div ref={bottomDivRef} className="flex flex-col gap-[40px]">
-          <div className="mt-[45px] flex h-fit w-full items-center justify-between">
+        <div ref={bottomDivRef} className="mt-[23px] flex flex-col gap-[32px] md:mt-[45px] md:gap-[41px]">
+          <div className="flex h-fit w-full items-center justify-between">
             <div className="flex size-fit flex-col justify-center">
               <h1>{data.word}</h1>
-              <p className="text-[24px] text-[#A445ED] dark:text-[#A445ED]">{data.phonetic}</p>
+              <p className="mt-[4px] text-[18px] text-[#A445ED] dark:text-[#A445ED] md:text-[24px]">{data.phonetic}</p>
             </div>
             {audio && (
               <ButtonPlay
@@ -133,14 +134,14 @@ export default function Form() {
               />
             )}
           </div>
-          <ul className="flex flex-col gap-[40px]">
+          <ul className="flex flex-col gap-[32px] md:gap-[40px]">
             {data.meanings?.map((meaning, index) => (
-              <li key={index} className="flex flex-col gap-[40px]">
-                <div className="flex items-center gap-[32px]">
+              <li key={index} className="flex flex-col gap-[30px] md:gap-[40px]">
+                <div className="flex items-center gap-[25px] md:gap-[32px]">
                   <h2>{meaning.partOfSpeech}</h2>
                   <LineBreak />
                 </div>
-                <div className="flex flex-col gap-[25px]">
+                <div className="flex flex-col gap-[17px] md:gap-[25px]">
                   <h3>{titleMeaning}</h3>
                   <ul className="flex flex-col gap-[13px]">
                     {meaning.definitions?.map((definition, index) => (
@@ -181,7 +182,7 @@ export default function Form() {
           </ul>
           <div className="flex flex-col gap-[19px]">
             <LineBreak />
-            <div className="flex items-baseline gap-[20px]">
+            <div className="flex flex-col items-baseline gap-[2px] md:flex-row md:gap-[20px]">
               <h4>Source</h4>
               <ul className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
                 {data.sourceUrls?.map((link) => (

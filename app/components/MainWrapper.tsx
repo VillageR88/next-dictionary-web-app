@@ -7,7 +7,7 @@ export default function MainWrapper({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className={`mx-auto flex min-h-screen w-full max-w-[737px] flex-col py-[58px] ${fontFamily ? fontFamilies[fontFamily] : ''}`}
+      className={`mx-auto flex min-h-screen w-full max-w-[737px] flex-col p-[24px] md:px-0 md:py-[58px] ${fontFamily ? fontFamilies[fontFamily] : ''}`}
     >
       {children}
     </div>

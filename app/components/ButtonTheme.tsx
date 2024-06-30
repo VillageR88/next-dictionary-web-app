@@ -62,7 +62,7 @@ export default function ButtonTheme() {
         </div>
       </button>
       <svg
-        className="size-[20px] stroke-[#757575] transition dark:stroke-[#A445ED] md:size-[24px]"
+        className="size-[22px] stroke-[#757575] transition dark:stroke-[#A445ED]"
         xmlns="http://www.w3.org/2000/svg"
         width="22"
         height="22"
