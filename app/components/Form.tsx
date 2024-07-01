@@ -71,6 +71,7 @@ export default function Form() {
       setError(false);
       setTrackedNumber(state.number);
       setPending(false);
+      window.scrollTo({ behavior: 'instant', top: 0, left: 0 });
     }
   }, [state.number, trackedNumber]);
 
